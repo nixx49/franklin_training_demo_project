@@ -8,6 +8,9 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwardController = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -39,17 +42,46 @@ class _LogInPageState extends State<LogInPage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+            padding:
+                const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
             width: 300,
             child: Image.asset('images/newlogo.png'),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               children: [
                 Container(
-                  child: TextFormField(),
-                )
+                  child: TextFormField(
+                    controller: _usernameController,
+                    decoration: const InputDecoration(
+                      border: UnderlineInputBorder(),
+                      labelText: 'Enter Your User Name',
+                      hintText: 'Username',
+                    ),
+                  ),
+                ),
+                Container(
+                  child: TextFormField(
+                    controller: _passwardController,
+                    decoration: const InputDecoration(
+                      border: UnderlineInputBorder(),
+                      labelText: 'Enter Your Password',
+                      hintText: 'Password',
+                    ),
+                  ),
+                ),
+                Container(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'LogIn',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           )

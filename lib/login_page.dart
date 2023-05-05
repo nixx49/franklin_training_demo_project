@@ -24,21 +24,36 @@ class _LogInPageState extends State<LogInPage> {
           color: Colors.white,
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        decoration: BoxDecoration(
-            color: Colors.orange,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.withOpacity(0.4),
-                  blurRadius: 2.0,
-                  spreadRadius: 3.0)
-            ]),
-        width: 200,
-        height: 200,
-        child: Image.asset('images/newlogo.png'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: const Text(
+              'LogIn',
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+            width: 300,
+            child: Image.asset('images/newlogo.png'),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              children: [
+                Container(
+                  child: TextFormField(),
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

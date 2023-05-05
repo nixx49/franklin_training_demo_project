@@ -1,6 +1,5 @@
+import 'package:demo_project/home_page.dart';
 import 'package:flutter/material.dart';
-
-import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -10,27 +9,31 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    navigatorLogInScreen(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          child: Center(
+    return Center(
+      child: Column(
+        children: [
+          Center(
             child: Image.asset('images/newlogo.png'),
           ),
-        ),
-
-        Center(
-          child: ElevatedButton(
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
-            },
-            child: Text('Push and remove until'),
-          ),
-        )
-      ],
+        ],
+      ),
     );
+  }
+
+  void navigatorLogInScreen(BuildContext context) {
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    });
   }
 }

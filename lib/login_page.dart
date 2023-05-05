@@ -68,6 +68,9 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                   Container(
                     child: TextFormField(
+                      onChanged: (value){
+                        print(value);
+                      },
                       controller: _passwordController,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
@@ -96,8 +99,9 @@ class _LogInPageState extends State<LogInPage> {
     );
   }
   void loginButtonClick(){
-    if(_usernameController.text == 'user124' && _passwordController.text == '12345')
+    if(_usernameController.text == 'user123' && _passwordController.text == '12345')
     {
+      print('LogIn Success');
       Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const SplashScreen()));
@@ -105,9 +109,15 @@ class _LogInPageState extends State<LogInPage> {
       print('LogIn Fail');
     }
   }
-
-
-
-
 }
 
+void showAlertDialog(){
+  
+  AlertDialog alertDialog = const AlertDialog(
+    title: Text('Error'),
+    content: Text('Password or username invalid'),
+    actions: [
+
+    ],
+  );
+}

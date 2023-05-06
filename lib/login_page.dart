@@ -30,10 +30,11 @@ class _LogInPageState extends State<LogInPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.symmetric(vertical: 30),
               child: const Text(
                 'LogIn',
                 style: TextStyle(
@@ -48,6 +49,9 @@ class _LogInPageState extends State<LogInPage> {
                   top: 10, bottom: 10, left: 20, right: 20),
               width: 200,
               child: Image.asset('images/newlogo.png'),
+            ),
+            const SizedBox(
+              height: 10,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -79,15 +83,20 @@ class _LogInPageState extends State<LogInPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20,),
-
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Container(
-                    child: ElevatedButton(
-                      onPressed: loginButtonClick,
-                      child: const Text(
-                        'LogIn',
-                        style: TextStyle(
-                          color: Colors.white,
+                    child: SizedBox(
+                      height: 40,
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: loginButtonClick,
+                        child: const Text(
+                          'LogIn',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -105,8 +114,12 @@ class _LogInPageState extends State<LogInPage> {
     if (_usernameController.text == 'user123' &&
         _passwordController.text == '12345') {
       print('LogIn Success');
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => HomePage(username: _usernameController.text,)));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomePage(
+                    username: _usernameController.text,
+                  )));
     } else {
       print('LogIn Fail');
       showAlertDialog(context);

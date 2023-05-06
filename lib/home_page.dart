@@ -8,7 +8,7 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
-7877
+
 class _HomePageState extends State<HomePage> {
   List<String> data = [
     'Monday',
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
               },
             )),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(

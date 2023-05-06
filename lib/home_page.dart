@@ -1,4 +1,5 @@
 import 'package:demo_project/rest_api_service.dart';
+import 'package:demo_project/user_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,8 +36,10 @@ class _HomePageState extends State<HomePage> {
                   return ListView.builder(
                     itemCount: snapShot.data!.length,
                     itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {},
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => UserScreen(user: snapShot.data![index],)));
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -62,6 +65,12 @@ class _HomePageState extends State<HomePage> {
                               snapShot.data![index].city ?? '',
                               style: const TextStyle(
                                   fontSize: 18, color: Colors.black),
+                            ),
+                              leading:ClipOval(
+                                child: Image.network(snapShot.data![index].image, fit: BoxFit.cover, width: 50,height: 50,),
+                              ),
+                            trailing: IconButton(
+                              icon: Icon(Icons.favorite_border), onPressed: () {},
                             ),
                           ),
                         ),

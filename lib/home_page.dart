@@ -14,16 +14,31 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const Text('Home Page'),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Container(
-              child: Text('welcome ${widget.username}'),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 20.0,
+          ),
+          Center(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                'welcome ${widget.username}',
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey),
+              ),
             ),
-          ],
-        ),
+          ),
+          ElevatedButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const LogInPage()));
+            },child: const Text('LogOut'),
+          )
+        ],
       ),
     );
   }

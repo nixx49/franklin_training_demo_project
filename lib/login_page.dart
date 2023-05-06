@@ -46,7 +46,7 @@ class _LogInPageState extends State<LogInPage> {
             Container(
               padding: const EdgeInsets.only(
                   top: 10, bottom: 10, left: 20, right: 20),
-              width: 300,
+              width: 200,
               child: Image.asset('images/newlogo.png'),
             ),
             Container(
@@ -79,6 +79,8 @@ class _LogInPageState extends State<LogInPage> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 20,),
+
                   Container(
                     child: ElevatedButton(
                       onPressed: loginButtonClick,

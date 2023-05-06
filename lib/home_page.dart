@@ -17,7 +17,13 @@ class _HomePageState extends State<HomePage> {
     'Thursday',
     'Friday',
     'Saturday',
-    'Sunday'
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ];
   @override
   Widget build(BuildContext context) {
@@ -45,48 +51,68 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Expanded(
-                child: ListView.separated(
-              //physics: const ClampingScrollPhysics(),
+                child: ListView.builder(
               itemCount: data.length,
-              separatorBuilder: (context, index) {
-                return Container(
-                  color: Colors.grey,
-                  height: 1,
-                );
-              },
               itemBuilder: (context, index) {
                 return Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  height: 50,
+                  margin: EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.withOpacity(0.4),
+                          spreadRadius: 1,
+                          blurRadius: 1),
+                    ],
                   ),
-                  child: Center(
-                    child: Text(
+                  child: ListTile(
+                    leading: const Icon(
+                      Icons.access_alarm,
+                      color: Colors.orange,
+                    ),
+                    title: Text(
                       data[index],
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                    subtitle: const Text(
+                      'Days',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete),
+                      color: Colors.red,
+                      onPressed: () {},
                     ),
                   ),
                 );
+
+                // return Container(
+                //   margin: const EdgeInsets.symmetric(vertical: 10),
+                //   height: 50,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(10),
+                //     color: Colors.blue,
+                //   ),
+                //   child: Center(
+                //     child: Text(
+                //       data[index],
+                //       style: const TextStyle(color: Colors.white),
+                //     ),
+                //   ),
+                // );
               },
             )),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LogInPage()));
-                    },
-                    child: const Text('LogOut'),
-                  ),
-                ),
-              ],
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LogInPage()));
+                },
+                child: const Text('LogOut'),
+              ),
             )
           ],
         ),

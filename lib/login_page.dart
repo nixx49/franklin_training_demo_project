@@ -1,4 +1,4 @@
-import 'package:demo_project/splash_screen.dart';
+import 'package:demo_project/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LogInPage extends StatefulWidget {
@@ -104,7 +104,7 @@ class _LogInPageState extends State<LogInPage> {
         _passwordController.text == '12345') {
       print('LogIn Success');
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const SplashScreen()));
+          MaterialPageRoute(builder: (context) => HomePage(username: _usernameController.text,)));
     } else {
       print('LogIn Fail');
       showAlertDialog(context);

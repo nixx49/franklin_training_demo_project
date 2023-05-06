@@ -10,6 +10,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> data = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +28,6 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
-
           children: [
             const SizedBox(
               height: 20.0,
@@ -38,8 +46,8 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
                 child: ListView.separated(
-                  //physics: const ClampingScrollPhysics(),
-              itemCount: 20,
+              //physics: const ClampingScrollPhysics(),
+              itemCount: data.length,
               separatorBuilder: (context, index) {
                 return Container(
                   color: Colors.grey,
@@ -54,10 +62,10 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.blue,
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'Test 1234',
-                      style: TextStyle(color: Colors.white),
+                      data[index],
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 );

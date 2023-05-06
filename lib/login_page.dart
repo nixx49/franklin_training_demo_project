@@ -44,8 +44,8 @@ class _LogInPageState extends State<LogInPage> {
               ),
             ),
             Container(
-              padding:
-                  const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+              padding: const EdgeInsets.only(
+                  top: 10, bottom: 10, left: 20, right: 20),
               width: 300,
               child: Image.asset('images/newlogo.png'),
             ),
@@ -55,7 +55,7 @@ class _LogInPageState extends State<LogInPage> {
                 children: [
                   Container(
                     child: TextFormField(
-                      onChanged: (value){
+                      onChanged: (value) {
                         print(value);
                       },
                       controller: _usernameController,
@@ -68,7 +68,7 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                   Container(
                     child: TextFormField(
-                      onChanged: (value){
+                      onChanged: (value) {
                         print(value);
                       },
                       controller: _passwordController,
@@ -98,26 +98,34 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
-  void loginButtonClick(){
-    if(_usernameController.text == 'user123' && _passwordController.text == '12345')
-    {
+
+  void loginButtonClick() {
+    if (_usernameController.text == 'user123' &&
+        _passwordController.text == '12345') {
       print('LogIn Success');
-      Navigator.push(
-          context,
+      Navigator.push(context,
           MaterialPageRoute(builder: (context) => const SplashScreen()));
-    }else{
+    } else {
       print('LogIn Fail');
+      showAlertDialog(context);
     }
   }
-}
 
-void showAlertDialog(){
-  
-  AlertDialog alertDialog = const AlertDialog(
-    title: Text('Error'),
-    content: Text('Password or username invalid'),
-    actions: [
-
-    ],
-  );
+  void showAlertDialog(context) {
+    Widget okButton = ElevatedButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: const Text('OK'));
+    AlertDialog alertDialog = AlertDialog(
+      title: const Text('Error'),
+      content: const Text('Password or username invalid'),
+      actions: [okButton],
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
+  }
 }

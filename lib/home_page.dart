@@ -1,3 +1,4 @@
+import 'package:demo_project/login_page.dart';
 import 'package:flutter/material.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,7 +18,8 @@ class _HomePageState extends State<HomePage> {
         child: Center(
           child: ElevatedButton(
             onPressed: (){
-              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const LogInPage()));
             },
             child: Text('Log Out'),
           ),

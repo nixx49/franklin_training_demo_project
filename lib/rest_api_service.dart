@@ -6,9 +6,12 @@ import 'package:http/http.dart' as http;
 class RestAPIService {
   String apiUrl = 'https://api.mocki.io/v2/b99aa5b4';
 // this is the future method to get user from api url...(response or error)
+  // this is the background thread
   Future<List<User>> getUsers() async {
     final response = await http.get(Uri.parse(apiUrl));
+    print(response.body);
 
+//clicking the response using status coe is success or not
     if (response.statusCode == 200) {
       // I added return here
       return getUserList(response.body);

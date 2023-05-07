@@ -1,6 +1,8 @@
 import 'package:demo_project/rest_api_service.dart';
+import 'package:demo_project/user.dart';
 import 'package:demo_project/user_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,12 +13,30 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final apiService = RestAPIService();
+  List<User> userList = [];
+  List<bool> favouriteStatusList = [];
+  List<User> favouriteUserList = [];
+
+  late Icon favouriteIcon;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    apiService.getUsers();
-    //this is the main thread
+    apiService.getUsers().then((value) {
+      if (value.isNotEmpty) {
+        for (User user in value) {
+          favouriteStatusList.add(false);
+        }
+      }
+
+      // setState(() {
+      //   userList = value;
+      // });
+    });
+
+    favouriteIcon = Icon(Icons.favorite_border, color: Colors.red,);
+
+    //this is the main thread, after background thread is completed, it will work.
   }
 
   @override
@@ -38,7 +58,12 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => UserScreen(user: snapShot.data![index],)));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => UserScreen(
+                                        user: snapShot.data![index],
+                                      )));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -66,11 +91,33 @@ class _HomePageState extends State<HomePage> {
                               style: const TextStyle(
                                   fontSize: 18, color: Colors.black),
                             ),
-                              leading:ClipOval(
-                                child: Image.network(snapShot.data![index].image, fit: BoxFit.cover, width: 50,height: 50,),
+                            leading: ClipOval(
+                              child: Image.network(
+                                snapShot.data![index].image,
+                                fit: BoxFit.cover,
+                                width: 50,
+                                height: 50,
                               ),
+                            ),
                             trailing: IconButton(
-                              icon: Icon(Icons.favorite_border), onPressed: () {},
+                              icon: getFavouriteIcon(index),
+                              onPressed: () {
+                                setState(() {
+                                  favouriteStatusList[index] = !favouriteStatusList[index];
+                                  // if(favouriteStatusList[index]){
+                                  //   favouriteStatusList[index] = false;
+                                 // }
+                                  if(favouriteUserList.contains(snapShot.data![index])){
+                                    favouriteUserList.remove(snapShot.data![index]);
+                                  }else{
+                                    favouriteUserList.add(snapShot.data![index]);
+                                  }
+                                });
+
+                                for(var item in favouriteUserList){
+                                  print(item.name);
+                                }
+                              },
                             ),
                           ),
                         ),
@@ -81,14 +128,9 @@ class _HomePageState extends State<HomePage> {
                 } else {
                   return Container(
                     child: const Center(
-                      child: Text(
-                        'Loading...',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
+                        child: SpinKitCircle(
+                      color: Colors.cyan,
+                    )),
                   );
                 }
               },
@@ -98,4 +140,14 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+  Icon getFavouriteIcon(int index){
+    if(favouriteStatusList[index]){
+      return Icon(Icons.favorite, color: Colors.red,);
+    }else{
+      return Icon(Icons.favorite_border_outlined, color: Colors.red,);
+    }
+  }
+
+
+
 }

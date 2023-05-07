@@ -34,7 +34,10 @@ class _HomePageState extends State<HomePage> {
       // });
     });
 
-    favouriteIcon = Icon(Icons.favorite_border, color: Colors.red,);
+    favouriteIcon = const Icon(
+      Icons.favorite_border,
+      color: Colors.red,
+    );
 
     //this is the main thread, after background thread is completed, it will work.
   }
@@ -103,20 +106,24 @@ class _HomePageState extends State<HomePage> {
                               icon: getFavouriteIcon(index),
                               onPressed: () {
                                 setState(() {
-                                  favouriteStatusList[index] = !favouriteStatusList[index];
+                                  favouriteStatusList[index] =
+                                      !favouriteStatusList[index];
                                   // if(favouriteStatusList[index]){
                                   //   favouriteStatusList[index] = false;
-                                 // }
-                                  if(favouriteUserList.contains(snapShot.data![index])){
-                                    favouriteUserList.remove(snapShot.data![index]);
-                                  }else{
-                                    favouriteUserList.add(snapShot.data![index]);
+                                  // }
+                                  if (favouriteUserList
+                                      .contains(snapShot.data![index])) {
+                                    favouriteUserList
+                                        .remove(snapShot.data![index]);
+                                  } else {
+                                    favouriteUserList
+                                        .add(snapShot.data![index]);
                                   }
                                 });
 
-                                for(var item in favouriteUserList){
-                                  print(item.name);
-                                }
+                                // for(var item in favouriteUserList){
+                                //   print(item.name);
+                                // }
                               },
                             ),
                           ),
@@ -140,14 +147,18 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Icon getFavouriteIcon(int index){
-    if(favouriteStatusList[index]){
-      return Icon(Icons.favorite, color: Colors.red,);
-    }else{
-      return Icon(Icons.favorite_border_outlined, color: Colors.red,);
+
+  Icon getFavouriteIcon(int index) {
+    if (favouriteStatusList[index]) {
+      return const Icon(
+        Icons.favorite,
+        color: Colors.red,
+      );
+    } else {
+      return const Icon(
+        Icons.favorite_border_outlined,
+        color: Colors.red,
+      );
     }
   }
-
-
-
 }
